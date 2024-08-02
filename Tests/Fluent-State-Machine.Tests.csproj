@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RSG.FluentStateMachineTests</RootNamespace>
     <AssemblyName>Fluent-State-Machine.Tests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>bd68c1bf</NuGetPackageImportStamp>
   </PropertyGroup>

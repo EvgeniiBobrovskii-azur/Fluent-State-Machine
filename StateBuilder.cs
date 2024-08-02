@@ -5,8 +5,7 @@ namespace Azur.StateMachine
     /// <summary>
     ///     Builder providing a fluent API for constructing states.
     /// </summary>
-    public sealed class StateBuilder<T, TParent> : IStateBuilder<T, TParent>
-        where T : AbstractState, new()
+    public sealed class StateBuilder<T, TParent> : IStateBuilder<T, TParent> where T : AbstractState, new()
     {
         /// <summary>
         ///     Class to return when we call .End()

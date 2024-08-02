@@ -28,17 +28,17 @@ namespace Azur.StateMachine
         /// <summary>
         ///     Action called when we enter the state.
         /// </summary>
-        private Action _onEnter;
+        private Action _onEnter = delegate { };
 
         /// <summary>
         ///     Action called when we exit the state.
         /// </summary>
-        private Action _onExit;
+        private Action _onExit = delegate { };
 
         /// <summary>
         ///     Action called when the state gets updated.
         /// </summary>
-        private Action<float> _onUpdate;
+        private Action<float> _onUpdate = delegate { };
 
         /// <summary>
         ///     Parent state, or null if this is the root level state.
@@ -110,13 +110,9 @@ namespace Azur.StateMachine
                 return;
             }
 
-            if (_onUpdate != null)
-            {
-                _onUpdate(deltaTime);
-            }
-
-            // Update conditions
-            for (var i = 0; i < _conditions.Count; i++)
+            _onUpdate.Invoke(deltaTime);
+            
+            for (int i = 0, max = _conditions.Count; i < max; i++)
             {
                 if (_conditions[i].Predicate())
                 {
@@ -130,10 +126,7 @@ namespace Azur.StateMachine
         /// </summary>
         public void Enter()
         {
-            if (_onEnter != null)
-            {
-                _onEnter();
-            }
+            _onEnter.Invoke();
         }
 
         /// <summary>
@@ -141,10 +134,7 @@ namespace Azur.StateMachine
         /// </summary>
         public void Exit()
         {
-            if (_onExit != null)
-            {
-                _onExit();
-            }
+            _onExit.Invoke();
 
             while (_activeChildren.Count > 0)
             {
@@ -263,8 +253,7 @@ namespace Azur.StateMachine
         ///     Sets an action to be associated with an identifier that can later be used
         ///     to trigger it.
         /// </summary>
-        public void SetEvent<TEvent>(string identifier, Action<TEvent> eventTriggeredAction)
-            where TEvent : EventArgs
+        public void SetEvent<TEvent>(string identifier, Action<TEvent> eventTriggeredAction) where TEvent : EventArgs
         {
             _events.Add(identifier, args => eventTriggeredAction(CheckEventArgs<TEvent>(identifier, args)));
         }
@@ -272,8 +261,7 @@ namespace Azur.StateMachine
         /// <summary>
         ///     Cast the specified EventArgs to a specified type, throwing a descriptive exception if this fails.
         /// </summary>
-        private static TEvent CheckEventArgs<TEvent>(string identifier, EventArgs args)
-            where TEvent : EventArgs
+        private static TEvent CheckEventArgs<TEvent>(string identifier, EventArgs args) where TEvent : EventArgs
         {
             try
             {

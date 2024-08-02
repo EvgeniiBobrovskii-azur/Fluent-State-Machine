@@ -1,8 +1,9 @@
-﻿using Moq;
+﻿using Azur.StateMachine;
+using Moq;
 using System;
 using Xunit;
 
-namespace RSG.FluentStateMachineTests
+namespace RSG.StateMachine.Tests
 {
     public class StateTests
     {

@@ -201,3 +201,4 @@ FakesAssemblies/
 **/Builds/
 Examples/Unity Example/*.sln
 Examples/Unity Example/*.csproj
+.DS_Store

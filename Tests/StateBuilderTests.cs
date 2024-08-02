@@ -1,7 +1,8 @@
 ﻿using System;
+using Azur.StateMachine;
 using Xunit;
 
-namespace RSG.FluentStateMachineTests
+namespace RSG.StateMachine.Tests
 {
     public class StateBuilderTests
     {
